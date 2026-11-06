@@ -1,0 +1,581 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Westminster History Reference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:            #f5f4f0;
+    --surface:       #ffffff;
+    --surface-2:     #efede6;
+    --ink:           #1d2333;
+    --ink-soft:      #545c70;
+    --ink-faint:     #838a9c;
+    --line:          #ddd8ca;
+    --line-strong:   #c7c0ac;
+    --accent:        #93691f;
+    --accent-strong: #6f4f16;
+    --accent-tint:   #f1e6cd;
+    --rail:          #b79a54;
+    --shadow:        0 1px 2px rgba(29,35,51,.06), 0 8px 24px -12px rgba(29,35,51,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:            #14161d;
+      --surface:       #1b1e28;
+      --surface-2:     #21242f;
+      --ink:           #e9e7de;
+      --ink-soft:      #aeb2c2;
+      --ink-faint:     #7c8194;
+      --line:          #2c2f3b;
+      --line-strong:   #3a3e4c;
+      --accent:        #d8b665;
+      --accent-strong: #eccb80;
+      --accent-tint:   #332a17;
+      --rail:          #7a6636;
+      --shadow:        0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:            #14161d;
+    --surface:       #1b1e28;
+    --surface-2:     #21242f;
+    --ink:           #e9e7de;
+    --ink-soft:      #aeb2c2;
+    --ink-faint:     #7c8194;
+    --line:          #2c2f3b;
+    --line-strong:   #3a3e4c;
+    --accent:        #d8b665;
+    --accent-strong: #eccb80;
+    --accent-tint:   #332a17;
+    --rail:          #7a6636;
+    --shadow:        0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Spectral', Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    color:var(--ink);
+    text-wrap:balance;
+    margin:0;
+  }
+  a{ color:var(--accent-strong); }
+  .eyebrow{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    text-transform:uppercase;
+    letter-spacing:.11em;
+    font-size:.72rem;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .tnum{ font-variant-numeric:tabular-nums; }
+
+  /* ---- top bar ---- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:900px; margin:0 auto;
+    padding:.7rem 20px;
+    display:flex; align-items:center; gap:1.5rem;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .topbar-inner::-webkit-scrollbar{ display:none; }
+  .topbar .mark{
+    font-family:'Spectral', serif; font-weight:600; font-size:1rem;
+    white-space:nowrap; color:var(--ink);
+    display:flex; align-items:center; gap:.4rem;
+  }
+  .topbar .mark .crest{ color:var(--accent); font-size:1.1em; }
+  .topnav{ display:flex; gap:1.15rem; white-space:nowrap; }
+  .topnav a{
+    font-size:.82rem; font-weight:500; text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+    padding:.15rem 0;
+  }
+  .topnav a:hover, .topnav a:focus-visible{ color:var(--ink); border-color:var(--rail); }
+
+  /* ---- shell ---- */
+  .wrap{ max-width:900px; margin:0 auto; padding:0 20px 5rem; }
+  .prose{ max-width:66ch; }
+  section{ padding-top:3.2rem; scroll-margin-top:4.5rem; }
+  section + section{ border-top:1px solid var(--line); }
+
+  /* ---- header ---- */
+  header.hero{
+    max-width:900px; margin:0 auto; padding:3.4rem 20px 2.6rem;
+  }
+  header.hero .eyebrow{ display:block; margin-bottom:.9rem; }
+  header.hero h1{
+    font-size:clamp(2rem, 5vw, 2.9rem);
+    line-height:1.08;
+  }
+  header.hero .sub{
+    margin-top:.9rem; color:var(--ink-soft); font-size:1.05rem; max-width:52ch;
+  }
+  header.hero .facts{
+    margin-top:1.6rem; display:flex; flex-wrap:wrap; gap:.5rem 1.6rem;
+  }
+  header.hero .facts div{ font-size:.8rem; color:var(--ink-faint); }
+  header.hero .facts strong{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:.95rem;
+    color:var(--ink); font-weight:600; letter-spacing:.01em;
+  }
+
+  h2.section-title{ font-size:1.6rem; margin-bottom:1.4rem; }
+  h2.section-title .eyebrow{ display:block; margin-bottom:.5rem; }
+
+  /* ---- citation block ---- */
+  .citations{
+    display:grid; gap:.85rem; margin:1.5rem 0 1.7rem;
+  }
+  .citations blockquote{
+    margin:0; padding:.9rem 1.1rem;
+    background:var(--surface);
+    border-left:3px solid var(--rail);
+    border-radius:2px;
+    box-shadow:var(--shadow);
+    font-family:'Spectral', serif; font-style:italic; font-size:1.02rem;
+    color:var(--ink);
+  }
+  .citations blockquote cite{
+    display:block; margin-top:.45rem;
+    font-family:'IBM Plex Mono', monospace; font-style:normal;
+    font-size:.7rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .callout{
+    background:var(--accent-tint);
+    border:1px solid color-mix(in srgb, var(--rail) 45%, transparent);
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1.6rem 0;
+  }
+  .callout .eyebrow{ margin-bottom:.4rem; }
+  .callout p{ margin:0; color:var(--ink); }
+  .callout p + p{ margin-top:.6rem; }
+
+  p{ margin:0 0 1rem; }
+  section > p:last-child{ margin-bottom:0; }
+
+  /* ---- question-type table ---- */
+  .table-wrap{
+    overflow-x:auto; margin-top:1.5rem;
+    border:1px solid var(--line); border-radius:8px;
+    box-shadow:var(--shadow);
+  }
+  table.qtable{
+    border-collapse:collapse; width:100%; min-width:640px;
+    background:var(--surface);
+  }
+  table.qtable caption{ display:none; }
+  table.qtable th, table.qtable td{
+    text-align:left; padding:.8rem .95rem; vertical-align:top;
+    font-size:.89rem; border-bottom:1px solid var(--line);
+  }
+  table.qtable thead th{
+    font-family:'IBM Plex Mono', monospace; font-size:.68rem;
+    text-transform:uppercase; letter-spacing:.08em;
+    color:var(--ink-faint); background:var(--surface-2);
+    font-weight:600; border-bottom:1px solid var(--line-strong);
+  }
+  table.qtable td:first-child{
+    font-family:'Spectral', serif; font-weight:600; color:var(--ink);
+    width:19%;
+  }
+  table.qtable td:nth-child(2){ color:var(--ink-soft); font-style:italic; width:29%; }
+  table.qtable td:nth-child(3){ color:var(--ink); }
+  table.qtable tbody tr:last-child td{ border-bottom:none; }
+  table.qtable tbody tr:hover{ background:var(--surface-2); }
+  .table-note{
+    margin-top:.9rem; font-size:.87rem; color:var(--ink-soft);
+  }
+
+  /* ---- timeline ---- */
+  .timeline{ position:relative; margin-top:2rem; }
+  .timeline::before{
+    content:""; position:absolute; left:7px; top:.5rem; bottom:.5rem;
+    width:2px; background:linear-gradient(var(--rail), var(--line) 92%);
+  }
+  .era{ position:relative; padding:0 0 2.1rem 2.1rem; }
+  .era::before{
+    content:""; position:absolute; left:0; top:.35rem;
+    width:16px; height:16px; border-radius:50%;
+    background:var(--surface); border:3px solid var(--rail);
+  }
+  .era:last-child{ padding-bottom:0; }
+  .era-head{ display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap; margin-bottom:.6rem; }
+  .era-head h3{ font-size:1.12rem; }
+  .era-head .range{ font-family:'IBM Plex Mono', monospace; font-size:.74rem; color:var(--ink-faint); }
+  .era-note{ font-size:.85rem; color:var(--ink-soft); font-style:italic; margin:-.2rem 0 .7rem; }
+  .region-grid{ display:grid; gap:.55rem 1.5rem; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); }
+  .region{ font-size:.88rem; }
+  .region .name{ font-weight:600; color:var(--ink); }
+  .region .name::after{ content:" — "; color:var(--ink-faint); font-weight:400; }
+  .region .houses{ color:var(--ink-soft); }
+
+  /* ---- podcasts ---- */
+  .pod-grid{
+    display:grid; gap:1rem;
+    grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+    margin-top:1.6rem;
+  }
+  .pod-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    padding:1.1rem 1.2rem; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:.5rem;
+  }
+  .pod-card h3{ font-size:1rem; line-height:1.3; }
+  .pod-card .host{
+    font-family:'IBM Plex Mono', monospace; font-size:.68rem;
+    text-transform:uppercase; letter-spacing:.06em; color:var(--accent);
+    font-weight:600;
+  }
+  .pod-card p{ font-size:.87rem; color:var(--ink-soft); margin:0; }
+  .rotation{ margin-top:1.4rem; }
+  .rotation strong{ color:var(--ink); }
+
+  /* ---- essays ---- */
+  .essay-index{
+    display:flex; flex-wrap:wrap; gap:.6rem; margin:1.6rem 0 2rem; padding:0; list-style:none;
+  }
+  .essay-index a{
+    display:block; text-decoration:none;
+    font-size:.82rem; font-weight:500; color:var(--ink-soft);
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:20px; padding:.4rem .9rem;
+  }
+  .essay-index a:hover{ border-color:var(--rail); color:var(--ink); }
+  .essay-index .n{ font-family:'IBM Plex Mono', monospace; color:var(--accent); margin-right:.4rem; }
+
+  details.specimen{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    box-shadow:var(--shadow);
+    margin-bottom:1.4rem; scroll-margin-top:4.5rem;
+    overflow:hidden;
+  }
+  details.specimen summary{
+    cursor:pointer; list-style:none; padding:1.15rem 1.3rem;
+    display:flex; align-items:center; gap:.9rem;
+    border-bottom:1px solid transparent;
+  }
+  details.specimen[open] summary{ border-bottom-color:var(--line); }
+  details.specimen summary::-webkit-details-marker{ display:none; }
+  details.specimen summary::after{
+    content:"+"; margin-left:auto; font-family:'IBM Plex Mono',monospace;
+    font-size:1.1rem; color:var(--ink-faint); flex:none;
+  }
+  details.specimen[open] summary::after{ content:"–"; }
+  .specimen summary .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:.66rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--accent); background:var(--accent-tint);
+    padding:.22rem .5rem; border-radius:3px; flex:none;
+  }
+  .specimen summary h3{ font-size:1.05rem; line-height:1.35; }
+  .specimen-body{
+    padding:0 1.3rem 1.4rem;
+    border-top:1px dashed var(--line);
+    padding-top:1.1rem;
+  }
+  .specimen-body p{ font-size:.96rem; color:var(--ink); }
+  .specimen-body p:first-of-type::first-letter{
+    font-family:'Spectral', serif; font-weight:600; font-size:1.7em;
+    color:var(--accent-strong); line-height:1;
+  }
+
+  footer{
+    max-width:900px; margin:0 auto; padding:2.6rem 20px 0;
+    color:var(--ink-faint); font-size:.8rem;
+  }
+
+  @media (max-width:640px){
+    header.hero{ padding:2.4rem 20px 2rem; }
+    section{ padding-top:2.4rem; }
+    .region-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    * { scroll-behavior:auto !important; }
+  }
+  html{ scroll-behavior:smooth; }
+</style>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="mark"><span class="crest">&#127963;</span> The Challenge</span>
+    <nav class="topnav">
+      <a href="#fact">The one fact</a>
+      <a href="#questions">Question types</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#podcasts">Podcasts</a>
+      <a href="#essays">Worked essays</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <span class="eyebrow">Westminster Scholarship &middot; Section B: History</span>
+  <h1>History study reference</h1>
+  <p class="sub">Ammunition for the essay, not a syllabus to memorise: recurring question types, a dynasty timeline to draw examples from, a listening list, and three full worked answers.</p>
+  <div class="facts">
+    <div><strong class="tnum">2027</strong>first exam sitting</div>
+    <div><strong>One essay</strong>chosen from ~15 open questions</div>
+    <div><strong>No sources</strong>Section A (Geography) only</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="fact">
+    <h2 class="section-title"><span class="eyebrow">Start here</span>The one fact that should drive all your prep</h2>
+    <div class="prose">
+      <p>Confirmed directly from Westminster's own guidance and specimen papers (2016, 2018, and the current 2027 specimen):</p>
+    </div>
+    <div class="citations">
+      <blockquote>&ldquo;It is not intended to reward extensive factual knowledge or specific preparation of particular topics.&rdquo;<cite>Geography &amp; History core guidance</cite></blockquote>
+      <blockquote>&ldquo;No &lsquo;own knowledge&rsquo; is expected or required.&rdquo;<cite>2018 History specimen</cite></blockquote>
+      <blockquote>&ldquo;Don't worry at all if you have never studied the topic.&rdquo;<cite>2016 &amp; 2018 specimens</cite></blockquote>
+    </div>
+    <div class="prose">
+      <p><strong>Section B (History) is one essay, chosen from a list of roughly 15 open, thematic questions.</strong> There's no source work on the History side &mdash; that's Section A, and it's Geography. There is no fixed period or country to &ldquo;cover.&rdquo; Examiners mark argument quality, use of evidence, and independent thinking, not recall.</p>
+      <div class="callout">
+        <span class="eyebrow">What this means practically</span>
+        <p>The timeline below isn't a syllabus to memorise. It's ammunition &mdash; a stock of specific, well-chosen examples (dynasties, individuals, turning points) to reach for under <em>any</em> of the recurring prompts, whichever topic list comes up that year.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="questions">
+    <h2 class="section-title"><span class="eyebrow">Recurring across 2016&ndash;2027 specimens</span>Essay question types</h2>
+    <div class="table-wrap">
+      <table class="qtable">
+        <caption>Recurring essay question types</caption>
+        <thead>
+          <tr><th scope="col">Question type</th><th scope="col">Example as set</th><th scope="col">Good ammunition</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Empires rising/falling</td><td>&ldquo;Why do empires rise and fall?&rdquo;</td><td>Roman Empire, Mongol Empire, Ottoman Empire, British Empire</td></tr>
+          <tr><td>Individuals vs forces</td><td>&ldquo;Is it individuals or larger forces that have the greatest impact on history?&rdquo;</td><td>Napoleon vs. post-Revolution chaos; Hitler vs. Depression-era Germany; Alexander vs. Macedonian military system</td></tr>
+          <tr><td>Conflict vs cooperation</td><td>&ldquo;Which is more important in causing change: conflict or cooperation?&rdquo;</td><td>French Revolution (conflict) vs. founding of the EU/Marshall Plan (cooperation)</td></tr>
+          <tr><td>Historiography / certainty</td><td>&ldquo;Can historians ever know what really happened in the past?&rdquo;</td><td>Death of Richard III (rediscovered 2012), the Kennedy assassination, Boudica's revolt</td></tr>
+          <tr><td>Historians disagreeing</td><td>&ldquo;Why do different historians sometimes disagree about the same event?&rdquo;</td><td>Interpretations of Cromwell (hero vs. tyrant), of the British Empire, of the French Revolution</td></tr>
+          <tr><td>Technology driving change</td><td>&ldquo;To what extent does technology drive historical change?&rdquo;</td><td>The printing press and the Reformation; gunpowder and the end of feudal warfare; the internet and the Arab Spring</td></tr>
+          <tr><td>Revolutions succeeding/failing</td><td>&ldquo;Are revolutions more likely to succeed or fail?&rdquo;</td><td>American Revolution (succeeded) vs. 1848 revolutions (mostly failed) vs. Russian Revolution (succeeded, then devoured itself)</td></tr>
+          <tr><td>Ordinary people's history</td><td>&ldquo;How useful is the study of ordinary people's lives for understanding history?&rdquo;</td><td>Black Death and peasant life; WWI trench letters; Samuel Pepys' diary</td></tr>
+          <tr><td>Power and corruption</td><td>&ldquo;Does history show that power usually corrupts those who hold it?&rdquo;</td><td>Louis XIV, Stalin, Nero &mdash; vs. counter-examples like Cincinnatus or George Washington relinquishing power</td></tr>
+          <tr><td>Geography shaping history</td><td>&ldquo;How far does geography shape the course of history?&rdquo;</td><td>Britain as an island (naval power, Armada, D-Day); Egypt and the Nile; Russia's vastness defeating Napoleon and Hitler</td></tr>
+          <tr><td>Ideas vs economics</td><td>&ldquo;Which has had a greater impact: ideas or economic factors?&rdquo;</td><td>Enlightenment ideas vs. Industrial Revolution economics as drivers of the modern world</td></tr>
+          <tr><td>Historical significance</td><td>&ldquo;What makes an event historically significant?&rdquo;</td><td>Fall of the Berlin Wall &mdash; scale, immediacy, long-term resonance, all as criteria</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Build 2&ndash;3 tight examples per row, not ten shallow ones. Depth beats breadth here.</p>
+  </section>
+
+  <section id="timeline">
+    <h2 class="section-title"><span class="eyebrow">Ruling houses &amp; dynasties by period</span>The timeline</h2>
+
+    <div class="timeline">
+      <div class="era">
+        <div class="era-head"><h3>Prehistory &amp; early civilisations</h3><span class="range tnum">to c. 3000 BCE</span></div>
+        <p class="era-note">No dynasties yet &mdash; agriculture, first settlements (&Ccedil;atalh&ouml;y&uuml;k, Jericho).</p>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>Ancient civilisations</h3><span class="range tnum">c. 3000&ndash;500 BCE</span></div>
+        <div class="region-grid">
+          <div class="region"><span class="name">Egypt</span><span class="houses">Old/Middle/New Kingdom dynasties &mdash; 18th Dynasty (Hatshepsut, Akhenaten, Tutankhamun), 19th Dynasty (Ramesses&nbsp;II)</span></div>
+          <div class="region"><span class="name">Mesopotamia</span><span class="houses">Akkadian Empire (Sargon), Babylonian dynasty (Hammurabi), Neo-Assyrian Empire</span></div>
+          <div class="region"><span class="name">China</span><span class="houses">Shang dynasty, Zhou dynasty</span></div>
+        </div>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>Classical antiquity</h3><span class="range tnum">c. 500 BCE&ndash;500 CE</span></div>
+        <div class="region-grid">
+          <div class="region"><span class="name">Greece</span><span class="houses">Athenian democracy; Argead dynasty (Philip&nbsp;II, Alexander the Great)</span></div>
+          <div class="region"><span class="name">Rome</span><span class="houses">Julio-Claudian dynasty (Augustus to Nero), Flavian, Severan dynasties</span></div>
+          <div class="region"><span class="name">Persia</span><span class="houses">Achaemenid Empire (Cyrus, Darius), later Parthian and Sassanid dynasties</span></div>
+          <div class="region"><span class="name">India</span><span class="houses">Maurya dynasty (Ashoka), Gupta dynasty</span></div>
+          <div class="region"><span class="name">China</span><span class="houses">Qin dynasty (first unification), Han dynasty</span></div>
+        </div>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>Early medieval</h3><span class="range tnum">c. 500&ndash;1000</span></div>
+        <div class="region-grid">
+          <div class="region"><span class="name">Byzantium</span><span class="houses">Justinian dynasty, later Macedonian dynasty</span></div>
+          <div class="region"><span class="name">Islamic world</span><span class="houses">Rashidun, Umayyad, then Abbasid Caliphates</span></div>
+          <div class="region"><span class="name">Western Europe</span><span class="houses">Merovingian dynasty, Carolingian dynasty (Charlemagne)</span></div>
+          <div class="region"><span class="name">England</span><span class="houses">House of Wessex (Alfred the Great, &AElig;thelstan)</span></div>
+          <div class="region"><span class="name">China</span><span class="houses">Sui dynasty, Tang dynasty</span></div>
+        </div>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>High &amp; late medieval</h3><span class="range tnum">c. 1000&ndash;1450</span></div>
+        <div class="region-grid">
+          <div class="region"><span class="name">England</span><span class="houses">House of Normandy (1066&ndash;), House of Plantagenet (1154&ndash;1485)</span></div>
+          <div class="region"><span class="name">France</span><span class="houses">House of Capet, House of Valois</span></div>
+          <div class="region"><span class="name">Mongol world</span><span class="houses">Borjigin dynasty (Genghis Khan and successors) &mdash; the largest contiguous land empire in history</span></div>
+          <div class="region"><span class="name">China</span><span class="houses">Song dynasty, then Yuan dynasty (Mongol rule)</span></div>
+          <div class="region"><span class="name">Islamic world</span><span class="houses">Ayyubid dynasty (Saladin), Mamluk Sultanate</span></div>
+        </div>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>Early modern</h3><span class="range tnum">c. 1450&ndash;1650</span></div>
+        <div class="region-grid">
+          <div class="region"><span class="name">England</span><span class="houses">House of Tudor (1485&ndash;1603)</span></div>
+          <div class="region"><span class="name">Spain / Austria</span><span class="houses">House of Habsburg</span></div>
+          <div class="region"><span class="name">Ottoman Empire</span><span class="houses">House of Osman &mdash; height under Suleiman the Magnificent</span></div>
+          <div class="region"><span class="name">Mughal India</span><span class="houses">Timurid-descended Mughal dynasty (Babur, Akbar)</span></div>
+          <div class="region"><span class="name">China</span><span class="houses">Ming dynasty</span></div>
+          <div class="region"><span class="name">Japan</span><span class="houses">Ashikaga shogunate, then Tokugawa shogunate begins 1603</span></div>
+        </div>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>Age of revolutions</h3><span class="range tnum">c. 1650&ndash;1815</span></div>
+        <div class="region-grid">
+          <div class="region"><span class="name">England / Britain</span><span class="houses">House of Stuart (to 1714), then House of Hanover</span></div>
+          <div class="region"><span class="name">France</span><span class="houses">House of Bourbon &mdash; ended by the Revolution (1792)</span></div>
+          <div class="region"><span class="name">Russia</span><span class="houses">House of Romanov</span></div>
+          <div class="region"><span class="name">China</span><span class="houses">Qing dynasty (Manchu)</span></div>
+          <div class="region"><span class="name">Ottoman Empire</span><span class="houses">Continued Osman dynasty, entering slow decline</span></div>
+        </div>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>Industrial &amp; imperial age</h3><span class="range tnum">c. 1815&ndash;1914</span></div>
+        <div class="region-grid">
+          <div class="region"><span class="name">Britain</span><span class="houses">House of Hanover, then House of Saxe-Coburg-Gotha (Victoria)</span></div>
+          <div class="region"><span class="name">Germany</span><span class="houses">House of Hohenzollern (unification 1871)</span></div>
+          <div class="region"><span class="name">Austria-Hungary</span><span class="houses">House of Habsburg-Lorraine</span></div>
+          <div class="region"><span class="name">Russia</span><span class="houses">House of Romanov</span></div>
+          <div class="region"><span class="name">Japan</span><span class="houses">Meiji Restoration &mdash; Imperial House reasserts power, rapid modernisation</span></div>
+        </div>
+      </div>
+
+      <div class="era">
+        <div class="era-head"><h3>Modern &amp; contemporary</h3><span class="range tnum">1914&ndash;present</span></div>
+        <p class="era-note">This is where most of the old dynasties end.</p>
+        <div class="region-grid">
+          <div class="region"><span class="name">Romanov</span><span class="houses">falls 1917 &mdash; Russian Revolution</span></div>
+          <div class="region"><span class="name">Habsburg</span><span class="houses">falls 1918 &mdash; end of WWI</span></div>
+          <div class="region"><span class="name">Osman</span><span class="houses">falls 1922&ndash;24 &mdash; Ottoman Empire dissolved, Turkish Republic founded</span></div>
+          <div class="region"><span class="name">Qing</span><span class="houses">falls 1912 &mdash; Chinese Republic, later PRC in 1949</span></div>
+          <div class="region"><span class="name">British monarchy</span><span class="houses">continues, renamed House of Windsor in 1917 (from Saxe-Coburg-Gotha, wartime anti-German sentiment)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:1.8rem;">
+      <span class="eyebrow">Essay angle</span>
+      <p>The 1912&ndash;1924 window &mdash; four major dynastic systems collapsing within twelve years &mdash; is itself a strong case study for &ldquo;why do empires rise and fall&rdquo; or &ldquo;how far does WWI change the world.&rdquo;</p>
+    </div>
+  </section>
+
+  <section id="podcasts">
+    <h2 class="section-title"><span class="eyebrow">Build the listening habit</span>Podcasts worth the drive time</h2>
+    <p class="prose">Picked for a mix of narrative pull (keeps a 13-year-old actually listening) and direct essay relevance.</p>
+
+    <div class="pod-grid">
+      <div class="pod-card">
+        <span class="host">Tom Holland &amp; Dominic Sandbrook</span>
+        <h3>The Rest Is History</h3>
+        <p>The best general entry point; wide-ranging, conversational, usually 3&ndash;5 episode arcs on a topic. Builds the casual, cross-period fluency the essay questions reward.</p>
+      </div>
+      <div class="pod-card">
+        <span class="host">BBC Radio 4 &middot; Greg Jenner</span>
+        <h3>You're Dead to Me</h3>
+        <p>Pairs a historian with a comedian on one topic per episode; genuinely funny and built for a general audience &mdash; a strong fit at this age.</p>
+      </div>
+      <div class="pod-card">
+        <span class="host">Paul Cooper</span>
+        <h3>Fall of Civilizations</h3>
+        <p>Each standalone episode covers the rise and collapse of one civilisation (Rome, the Mongols, the Aztecs, the Khmer Empire, the Maya, and more). Maps almost directly onto &ldquo;why do empires rise and fall.&rdquo;</p>
+      </div>
+      <div class="pod-card">
+        <span class="host">Mike Duncan</span>
+        <h3>Revolutions</h3>
+        <p>Works chronologically through the English, American, French, Haitian, and Russian revolutions in depth. Directly useful for &ldquo;succeed or fail&rdquo; and &ldquo;conflict vs cooperation&rdquo; questions.</p>
+      </div>
+      <div class="pod-card">
+        <span class="host">NPR &middot; Rund Abdelfatah &amp; Ramtin Arablouei</span>
+        <h3>Throughline</h3>
+        <p>Shorter (25&ndash;35 min) episodes tracing a current event back to its historical roots. Good for the &ldquo;what makes an event historically significant&rdquo; angle.</p>
+      </div>
+      <div class="pod-card">
+        <span class="host">BBC Radio 4</span>
+        <h3>In Our Time</h3>
+        <p>The most academic of the list &mdash; a panel of historians on one topic per episode. More demanding, but excellent for depth once he's comfortable with a topic from a more narrative show.</p>
+      </div>
+    </div>
+
+    <p class="prose rotation">A reasonable rotation: <strong>The Rest Is History</strong> or <strong>You're Dead to Me</strong> for regular listening, <strong>Fall of Civilizations</strong> and <strong>Revolutions</strong> when a topic maps onto an essay type he wants to get sharp on, and <strong>In Our Time</strong> for anything he wants to go deeper on.</p>
+  </section>
+
+  <section id="essays">
+    <h2 class="section-title"><span class="eyebrow">Built from the ammunition above</span>Worked example essays</h2>
+    <p class="prose">Three full answers to real specimen questions. Each shows the shape examiners reward: a clear line of argument, specific comparative evidence, engagement with the counter-case, and a conclusion that actually decides something rather than just summarising.</p>
+
+    <ul class="essay-index">
+      <li><a href="#essay-1"><span class="n">01</span>Why do empires rise and fall?</a></li>
+      <li><a href="#essay-2"><span class="n">02</span>Individuals or larger forces?</a></li>
+      <li><a href="#essay-3"><span class="n">03</span>Do revolutions succeed or fail?</a></li>
+    </ul>
+
+    <details class="specimen" id="essay-1" open>
+      <summary><span class="tag">Specimen</span><h3>Why do empires rise and fall?</h3></summary>
+      <div class="specimen-body">
+        <p>Empires rise for remarkably similar reasons across history, and they tend to fall for reasons that are the mirror image of their rise &mdash; which suggests the two questions are really one question asked twice.</p>
+        <p>Rome rose because it solved a problem most ancient states couldn't: how to absorb conquered peoples without them wanting to leave. Citizenship, roads, and a legal system that worked the same in Gaul as in Syria turned conquest into integration. The Mongol Empire, under the Borjigin dynasty founded by Genghis Khan, rose even faster, for a different reason: a genuinely superior military system (mounted archers, decimal-based army organisation, ruthless meritocracy among commanders) that simply outfought every settled civilisation it met, from China's Song dynasty to the Abbasid Caliphate in Baghdad.</p>
+        <p>But both empires fell in ways that trace directly back to what made them succeed. Rome's citizenship model, so effective at integration, eventually meant the empire had no strong sense of a single &ldquo;Roman&rdquo; identity to defend when the crisis came in the fifth century &mdash; the western half simply stopped being worth holding together. The Mongol Empire's strength was speed and terror in conquest, not a system for governing what it had conquered; within a century of Genghis Khan's death it had already split into four fractious khanates, each absorbed into the cultures it ruled (the Yuan dynasty in China is Mongol in name only by its later years).</p>
+        <p>A sceptic might argue this is too tidy &mdash; that some empires fall for reasons that have nothing to do with how they rose, like the Black Death or a lost war. That's fair, and worth conceding: the Ottoman Empire, under the House of Osman, didn't collapse because its founding strengths turned to weaknesses so much as because it fell behind industrially while Britain and Germany raced ahead in the nineteenth century. External shocks matter.</p>
+        <p>Still, the strongest pattern holds across most cases, and it's visible with unusual clarity in the twelve years between 1912 and 1924, when four dynastic empires collapsed in quick succession &mdash; the Qing in China, the Romanovs in Russia, the Habsburgs in Austria-Hungary, and finally the Osmans in Turkey. Each fell for a locally specific reason, but each also fell because the system of rule that had built the empire (absolute monarchy, multi-ethnic dynastic loyalty) had become exactly what a modernising, nationalist twentieth century could no longer accept. Empires, in the end, tend to be undone by the very logic that built them.</p>
+      </div>
+    </details>
+
+    <details class="specimen" id="essay-2">
+      <summary><span class="tag">Specimen</span><h3>Is it individuals or larger forces that have the greatest impact on history?</h3></summary>
+      <div class="specimen-body">
+        <p>Napoleon Bonaparte is the case usually made for the power of the individual, and it's a strong one: a single Corsican artillery officer took control of a chaotic post-revolutionary France, redrew the map of Europe, and left a legal code still in use today. It's hard to imagine anyone else achieving exactly that.</p>
+        <p>But look closer at <em>why</em> Napoleon was able to do it, and the &ldquo;great individual&rdquo; argument starts to weaken. France in 1799 was exhausted by a decade of revolutionary chaos and desperate for order &mdash; a set of conditions Napoleon didn't create, he simply arrived into. The revolutionary armies he commanded were already unusually large and motivated because the Revolution had introduced mass conscription and a genuinely new sense of national purpose. Napoleon was an extraordinarily skilled general, but he was skilled at exploiting forces that were already in motion, not at creating them from nothing.</p>
+        <p>The same pattern appears with Adolf Hitler a century later. Hitler's rise is often told as a story of one man's will, but the Weimar Republic he took over had already been broken by the 1929 Depression, mass unemployment, and a national resentment over the Treaty of Versailles that long predated him. Other extremist leaders across Europe tried to exploit similar conditions in the 1930s and mostly failed &mdash; which suggests individual skill did matter, but only as the thing that turned an available opportunity into an actual seizure of power.</p>
+        <p>This points to a more useful way of framing the debate than a straight either/or: individuals matter most at moments when larger forces have already created an opening, and the historically significant individual is usually the one who recognises and exploits that opening fastest and most ruthlessly, not the one who invents a crisis from a stable situation. Alexander the Great inherited from his father Philip&nbsp;II an already-formidable Macedonian army and a Greek world already weakened by decades of infighting between city-states; his genius was in what he did with that inheritance, at extraordinary speed, not in creating the conditions for it.</p>
+        <p>So the honest answer is neither pole of the question. Larger forces set the boundaries of what's possible in a given moment; individuals decide, within those boundaries, how dramatically and how quickly the possible becomes real. History remembers the individual because their name is easier to attach to an outcome than &ldquo;a Depression&rdquo; or &ldquo;a fractured city-state system&rdquo; &mdash; but the forces did at least half the work.</p>
+      </div>
+    </details>
+
+    <details class="specimen" id="essay-3">
+      <summary><span class="tag">Specimen</span><h3>Are revolutions more likely to succeed or fail?</h3></summary>
+      <div class="specimen-body">
+        <p>It depends entirely on what &ldquo;succeed&rdquo; is taken to mean, and answering that question honestly is really the whole essay.</p>
+        <p>If success means simply overthrowing the existing government, revolutions succeed more often than people assume: the American Revolution removed British rule, the French Revolution ended the Bourbon monarchy under Louis&nbsp;XVI, and the Russian Revolution of 1917 ended three centuries of Romanov rule. In that narrow sense, revolutions are usually at least partially effective &mdash; governments rarely survive a determined, widely-supported uprising.</p>
+        <p>But if success means achieving the freer, fairer society the revolutionaries actually wanted, the record looks far worse. The French Revolution, which began with the ideals of liberty and equality, ended within a decade in the Terror and then in Napoleon crowning himself Emperor &mdash; arguably a more centralised form of power than the one it replaced. The Russian Revolution replaced the Romanov autocracy with Stalin's dictatorship, which by most measures inflicted greater suffering on ordinary Russians than the Tsar had. The revolutions of 1848 across Europe are the clearest failures of all: uprisings broke out in France, the German states, the Austrian Empire, and Italy within months of each other, nearly all inspired by similar liberal and nationalist ideals, and nearly all were crushed or reversed within two years, leaving the old monarchies more determined than ever to resist reform.</p>
+        <p>The American Revolution is the best counter-example, and it's worth taking seriously rather than dismissing: it did produce a lasting constitutional system rather than a new tyranny. What's notable is what made it different &mdash; a revolutionary leadership (Washington among them) that was unusually willing to hand back power rather than seize more of it, and a society with existing institutions of self-government (colonial assemblies) to build on rather than starting from nothing, unlike France or Russia.</p>
+        <p>That comparison suggests the real answer: revolutions succeed at destruction reliably and succeed at construction rarely, and the difference tends to come down to whether the revolutionaries have something specific to build with &mdash; existing institutions, a leadership willing to limit its own power &mdash; rather than only a grievance to act on. Revolutions are, in that sense, more likely to fail than succeed, precisely because tearing down a government is a far easier task than building a stable one to replace it.</p>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    Compiled as a revision reference for Westminster's Challenge, History section &middot; first exam 2027.
+  </footer>
+</div>
+
+</body></html>
